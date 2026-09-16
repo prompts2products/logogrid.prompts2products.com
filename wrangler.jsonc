@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
-  "name": "logogrid",
+  "name": "logogrid-prompts2products-com",
   "compatibility_date": "2026-09-16",
 
   // Static site only: scripts/inject-analytics.js writes dist/ from index.html.
