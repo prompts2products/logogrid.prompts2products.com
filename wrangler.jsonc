@@ -1,0 +1,23 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "logogrid",
+  "compatibility_date": "2026-09-16",
+
+  // Static site only: scripts/inject-analytics.js writes dist/ from index.html.
+  "build": {
+    "command": "node scripts/inject-analytics.js"
+  },
+  "assets": {
+    "directory": "dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "single-page-application"
+  },
+
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "logogrid.prompts2products.com",
+      "custom_domain": true
+    }
+  ]
+}
