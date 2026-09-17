@@ -75,7 +75,7 @@ Checking each context manually is slow and easy to skip. **LogoGrid makes it a t
 
 ## Live Demo
 
-> **▶️ Try it live:** _add your deployment URL here (e.g. `https://logogrid.prompts2products.com` or your GitHub Pages link)._
+> **▶️ Try it live:** [logogrid.prompts2products.com](https://logogrid.prompts2products.com)
 
 Or run it locally in 10 seconds. See [Quick Start](#quick-start). Because LogoGrid is a single self-contained `index.html`, you can also just **double-click the file** and it opens in your browser.
 
@@ -206,9 +206,22 @@ Drag the project folder onto [Netlify Drop](https://app.netlify.com/drop). Done.
 </details>
 
 <details>
-<summary><strong>Vercel / Cloudflare Pages</strong></summary>
+<summary><strong>Cloudflare Workers</strong> (how logogrid.prompts2products.com is hosted)</summary>
 
-Import the repo. Framework preset: **Other**. Build command: _none_. Output directory: root (`./`).
+[`wrangler.jsonc`](wrangler.jsonc) is already set up. It runs `node scripts/inject-analytics.js` and serves `dist/` as static assets.
+
+1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Continue with GitHub** and pick your fork.
+2. Deploy command: `npx wrangler deploy`. Leave the build command empty.
+3. Change `name` and the `routes` domain in `wrangler.jsonc` to your own Worker name and domain.
+4. Every push to `main` deploys.
+
+Or from your machine: `npx wrangler deploy`.
+</details>
+
+<details>
+<summary><strong>Vercel</strong></summary>
+
+Import the repo. [`vercel.json`](vercel.json) sets the build command and output directory.
 </details>
 
 ---
@@ -237,7 +250,7 @@ At deploy time, [`scripts/inject-analytics.js`](scripts/inject-analytics.js) rep
 1. **Create your properties:**
    - **Google Analytics 4**: create a property at [analytics.google.com](https://analytics.google.com) to get your `G-XXXXXXXXXX` measurement ID.
    - **Microsoft Clarity** (optional): create a free project at [clarity.microsoft.com](https://clarity.microsoft.com) for heatmaps and session recordings.
-2. **Add the environment variables** (Vercel → Project → Settings → Environment Variables):
+2. **Add the environment variables** (Cloudflare → Worker → Settings → Builds → Variables and secrets, or Vercel → Project → Settings → Environment Variables):
    | Name | Value |
    | --- | --- |
    | `GA_MEASUREMENT_ID` | `G-XXXXXXXXXX` |

@@ -2,6 +2,12 @@
 
 All notable changes to LogoGrid are documented here. This project follows [Semantic Versioning](https://semver.org/) and the [Keep a Changelog](https://keepachangelog.com/) format.
 
+## [Unreleased]
+
+### Changed
+- **Hosting moved to Cloudflare Workers.** `wrangler.jsonc` builds `dist/` and serves it at [logogrid.prompts2products.com](https://logogrid.prompts2products.com). Every push to `main` deploys.
+- README now links the live site and documents the Cloudflare setup.
+
 ## [1.0.0] - 2026-06-30
 
 The first public release of LogoGrid: a free, open-source, single-file logo background tester.
